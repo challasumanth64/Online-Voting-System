@@ -18,7 +18,7 @@
 6. Set environment variables:
    - `PORT`: 4000
    - `ORIGIN`: `https://live-polling-frontend.onrender.com` (change this after deploying frontend)
-   - `TEACHER_SECRET`: `change-this-secret-key-in-production` (change this to a secure value)
+   - `TEACHER_SECRET`: `king` (this is the default secret key)
 7. Click "Create Web Service"
 
 ### 2. Deploy the Frontend (React App)
@@ -39,7 +39,7 @@ After both services are deployed:
 
 1. Update the backend `ORIGIN` environment variable to match your actual frontend URL
 2. Update the frontend `VITE_SERVER_URL` environment variable to match your actual backend URL
-3. Update the backend `TEACHER_SECRET` to a secure value
+3. If you want to change the teacher secret key for security, update the backend `TEACHER_SECRET` to a more secure value
 
 ### 4. Redeploy Services
 
@@ -47,7 +47,11 @@ After updating environment variables, you'll need to redeploy both services:
 1. Go to each service dashboard
 2. Click "Manual Deploy" → "Deploy latest commit"
 
+## Teacher Login
+
+To log in as a teacher in the application, use the secret key: `king`
+
 ## Notes
 - The `.env` file has been committed to the repository for easier deployment
-- In production, you should change the `TEACHER_SECRET` to a secure value
+- For better security in production, consider changing the `TEACHER_SECRET` to a more complex value
 - Make sure to update the environment variables with your actual service URLs after deployment
