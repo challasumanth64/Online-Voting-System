@@ -1,0 +1,18 @@
+{
+  "name": "live-polling-system",
+  "version": "1.0.0",
+  "description": "A full-stack live polling system with React frontend and Node.js/Express backend",
+  "main": "server/server.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix client",
+    "start": "node server/server.js",
+    "postinstall": "npm install --prefix client && npm install --prefix server"
+  },
+  "keywords": ["polling", "voting", "realtime", "socket.io", "react", "express"],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  }
+}
