@@ -4,7 +4,7 @@ import ChatPopup from "./components/ChatPopup";
 import './styles/design-system.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:4000";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || "";
 
         const useCountdown = (deadlineAt) => {
           const [now, setNow] = useState(Date.now());
@@ -23,14 +23,16 @@ const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:4000";
           const handleEnter = async () => {
             if (role === "teacher") {
               try {
-                console.log("Making request to:", SERVER_URL + "/api/teacher/login");
+                // Use relative URL to go through the proxy
+                const url = SERVER_URL ? SERVER_URL + "/api/teacher/login" : "/api/teacher/login";
+                console.log("Making request to:", url);
                 console.log("Request details:", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({ secret })
                 });
                 
-                const res = await fetch(SERVER_URL + "/api/teacher/login", {
+                const res = await fetch(url, {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({ secret })
