@@ -17,7 +17,7 @@
 5. Set start command: `npm start --prefix server`
 6. Set environment variables:
    - `PORT`: 4000
-   - `ORIGIN`: `https://live-polling-frontend.onrender.com` (change this after deploying frontend)
+   - `ORIGIN`: `http://localhost:5173,https://live-polling-frontend.onrender.com` (comma-separated list of allowed origins)
    - `TEACHER_SECRET`: `king` (this is the default secret key)
 7. Click "Create Web Service"
 
@@ -50,6 +50,14 @@ After updating environment variables, you'll need to redeploy both services:
 ## Teacher Login
 
 To log in as a teacher in the application, use the secret key: `king`
+
+## Local Development
+
+For local development:
+1. Make sure both frontend and backend servers are running
+2. Frontend runs on `http://localhost:5173`
+3. Backend runs on `http://localhost:4000`
+4. The `.env` file in the server directory already includes `http://localhost:5173` in the ORIGIN
 
 ## Notes
 - The `.env` file has been committed to the repository for easier deployment
