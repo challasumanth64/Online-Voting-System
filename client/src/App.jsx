@@ -24,21 +24,37 @@ const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:4000";
             if (role === "teacher") {
               try {
                 console.log("Making request to:", SERVER_URL + "/api/teacher/login");
-                console.log("Secret:", secret);
+                console.log("Request details:", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ secret })
+                });
+                
                 const res = await fetch(SERVER_URL + "/api/teacher/login", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({ secret })
                 });
-                console.log("Response:", res);
+                
+                console.log("Response received:", res);
+                console.log("Response status:", res.status);
+                console.log("Response OK:", res.ok);
+                
                 if (!res.ok) {
-                  alert("Invalid teacher secret"); 
+                  const errorText = await res.text();
+                  console.error("Error response:", errorText);
+                  alert("Invalid teacher secret: " + errorText); 
                   return;
                 }
+                
+                const data = await res.json();
+                console.log("Response data:", data);
                 onEnter({ role, name: "Teacher", secret });
               } catch (error) {
-                console.error("Fetch error:", error);
-                alert("Network error: " + error.message);
+                console.error("Network error:", error);
+                console.error("Error name:", error.name);
+                console.error("Error message:", error.message);
+                alert("Network error: " + error.message + " (" + error.name + ")");
                 return;
               }
             } else {
